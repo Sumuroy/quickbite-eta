@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ETA Prediction Result</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: url("{{ url_for('static', filename='images/back.jpg') }}")
+          no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        background-attachment: fixed;
+        background-position: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Gradient overlay for better text visibility */
+      body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        z-index: -1; /* Place behind content */
+      }
+
+      .result-box {
+        background: rgba(0, 0, 0, 0.6); /* Slightly darker box */
+        padding: 40px 50px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        animation: slideIn 1s ease-out;
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Animation for the result box */
+      @keyframes slideIn {
+        from {
+          transform: translateY(100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #ffff66;
+        animation: fadeIn 1.5s ease-out;
+      }
+
+      /* Fade-in animation for the heading */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .value {
+        font-size: 48px;
+        font-weight: bold;
+        color: #ffeb3b;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        animation: zoomIn 1.5s ease-out;
+      }
+
+      /* Zoom-in animation for the value */
+      @keyframes zoomIn {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .back-button {
+        margin-top: 30px;
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #28a745;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Hover effect for the back button */
+      .back-button:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      .back-button:active {
+        transform: translateY(2px); /* Slight press effect */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="result-box">
+      {% if prediction %}
+      <h1>🚚 Your Estimated Delivery Time is:</h1>
+      <div class="value">{{ prediction }} minutes</div>
+      {% elif error %}
+      <h1>❌ Something went wrong</h1>
+      <p>{{ error }}</p>
+      {% endif %}
+      <a class="back-button" href="/">🔙 Go Back</a>
+    </div>
+  </body>
+</html>

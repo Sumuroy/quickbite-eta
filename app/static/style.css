@@ -1,0 +1,173 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100vh;
+  background: url('images/background.jpg') no-repeat center center fixed, linear-gradient(45deg, #00bcd4, #ff7e5f, #7a56d3, #f6d365, #2bffb3);
+  background-size: cover, 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
+  align-items: center;
+  background-attachment: fixed;
+  text-align: center;
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+h1 {
+  color: #ffffff;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  font-size: 3.5rem;
+  margin-top: 50px; 
+  margin-bottom: 20px; 
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 30px auto; 
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  animation: slideUp 1.5s ease-in-out;
+  width: 100%;
+  max-width: 600px;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+label {
+  font-weight: bold;
+  color: #ffffff;
+  display: block;
+  margin-top: 15px;
+  font-size: 18px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeInLabel 2s ease-in-out forwards;
+}
+
+@keyframes fadeInLabel {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+input:hover,
+select:hover,
+input:focus,
+select:focus {
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid #00bcd4;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.8);
+  transform: translateY(-2px);
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: #00bcd4;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+button:hover {
+  background-color: #0097a7;
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 188, 212, 0.5);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+}
+
+.result {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 18px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.result p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.result p strong {
+  color: #ff6b6b; 
+}
+
+.result.success p strong {
+  color: #28a745; 
+}

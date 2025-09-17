@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>QuickBite ETA Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>QuickBite Delivery Time Prediction</h1>
+    <div class="form-container">
+      <form action="/predict" method="post">
+        <label for="Delivery_person_Age">Delivery Person Age</label>
+        <input type="number" name="Delivery_person_Age" required />
+
+        <label for="Delivery_person_Ratings">Delivery Person Ratings</label>
+        <input
+          type="number"
+          step="0.1"
+          name="Delivery_person_Ratings"
+          required
+        />
+
+        <label for="Restaurant_latitude">Restaurant Latitude</label>
+        <input
+          type="number"
+          step="0.0001"
+          name="Restaurant_latitude"
+          required
+        />
+
+        <label for="Restaurant_longitude">Restaurant Longitude</label>
+        <input
+          type="number"
+          step="0.0001"
+          name="Restaurant_longitude"
+          required
+        />
+
+        <label for="Delivery_location_latitude"
+          >Delivery Location Latitude</label
+        >
+        <input
+          type="number"
+          step="0.0001"
+          name="Delivery_location_latitude"
+          required
+        />
+
+        <label for="Delivery_location_longitude"
+          >Delivery Location Longitude</label
+        >
+        <input
+          type="number"
+          step="0.0001"
+          name="Delivery_location_longitude"
+          required
+        />
+
+        <label for="Vehicle_condition">Vehicle Condition</label>
+        <input
+          type="number"
+          name="Vehicle_condition"
+          min="0"
+          max="10"
+          required
+        />
+
+        <label for="multiple_deliveries">Multiple Deliveries</label>
+        <input
+          type="number"
+          name="multiple_deliveries"
+          min="0"
+          max="10"
+          required
+        />
+
+        <label for="Weatherconditions">Weather Conditions</label>
+        <select name="Weatherconditions">
+          <option value="Sunny">Sunny</option>
+          <option value="Stormy">Stormy</option>
+          <option value="Sandstorms">Sandstorms</option>
+          <option value="Cloudy">Cloudy</option>
+        </select>
+
+        <label for="Road_traffic_density">Traffic Density</label>
+        <select name="Road_traffic_density">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+          <option value="Jam">Jam</option>
+        </select>
+
+        <label for="Type_of_order">Type of Order</label>
+        <select name="Type_of_order">
+          <option value="Snack">Snack</option>
+          <option value="Drinks">Drinks</option>
+          <option value="Buffet">Buffet</option>
+        </select>
+
+        <label for="Type_of_vehicle">Type of Vehicle</label>
+        <select name="Type_of_vehicle">
+          <option value="motorcycle">Motorcycle</option>
+          <option value="scooter">Scooter</option>
+        </select>
+
+        <label for="Festival">Festival</label>
+        <select name="Festival">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+
+        <label for="City">City</label>
+        <select name="City">
+          <option value="Urban">Urban</option>
+          <option value="Metropolitian">Metropolitian</option>
+          <option value="Semi-Urban">Semi-Urban</option>
+        </select>
+
+        <button type="submit">Predict ETA</button>
+      </form>
+
+      {% if prediction %}
+      <div class="result" style="color: green">
+        <p>
+          🚚 Estimated Delivery Time: <strong>{{ prediction }} minutes</strong>
+        </p>
+      </div>
+      {% elif error %}
+      <div class="result" style="color: red">
+        <p>❌ Error: {{ error }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
